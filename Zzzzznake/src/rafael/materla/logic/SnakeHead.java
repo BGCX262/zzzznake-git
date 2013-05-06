@@ -1,28 +1,60 @@
+/*
+ * SnakeHead
+ * 
+ * Version 0.8
+ * 
+ * 5/1/13
+ * 
+ * Author: Rafael Materla
+ */
+
 package rafael.materla.logic;
 
-public class SnakeHead extends Figure {
+import java.awt.Color;
 
-	
-	void moveUp(){
-		setPosition(position.x, position.y - 1);
-	}
-	
-	void moveRight(){
-		setPosition(position.x + 1, position.y);
-	}
-	
-	void moveDown(){
-		setPosition(position.x, position.y + 1);
-	}
-	
-	void moveLeft(){
-		setPosition(position.x - 1, position.y);
+final class SnakeHead extends Figure {
+
+	// ---CONSTRUCTORS---------------------------------------------------------/
+	SnakeHead(int x, int y) {
+		super(x, y, Color.GREEN, "SnakeHead");
 	}
 
-	@Override
-	void onCollision() {
-		// TODO Auto-generated method stub
-		
+	public SnakeHead() {
 	}
 
+	// ---METHODS--------------------------------------------------------------/
+	void move(Directions direction) {
+		switch (direction) {
+		case NORTH:
+			moveUp();
+			break;
+		case EAST:
+			moveRight();
+			break;
+		case SOUTH:
+			moveDown();
+			break;
+		case WEST:
+			moveLeft();
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void moveUp() {
+		position.y--;
+	}
+
+	private void moveRight() {
+		position.x++;
+	}
+
+	private void moveDown() {
+		position.y++;
+	}
+
+	private void moveLeft() {
+		position.x--;
+	}
 }

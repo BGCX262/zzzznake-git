@@ -32,7 +32,7 @@ public class Timer {
 
 	// ---METHODS--------------------------------------------------------------/
 	public void start() {
-		while (!boardReference.isGameOver()) {
+		while (!Board.isGameOver()) {
 			if (lastFrame + 100000000 <= System.nanoTime()) {
 				boardReference.updateTiles();
 				painterReference.repaint();

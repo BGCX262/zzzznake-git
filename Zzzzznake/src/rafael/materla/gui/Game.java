@@ -1,9 +1,9 @@
 /*
  * Game
  * 
- * Version 0.7.5
+ * Version 0.8
  * 
- * 4/7/13
+ * 5/1/13
  * 
  * Author: Rafael Materla
  */
@@ -34,7 +34,7 @@ public class Game {
 
 	// ---CONSTRUCTOR----------------------------------------------------------/
 	public Game(String name) {
-		board = new Board(15, 35, 25);
+		board = new Board();
 		frame = new JFrame(name);
 		panel = new Painter(board);
 		clock = new Timer(board, panel);
