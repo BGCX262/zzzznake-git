@@ -1,11 +1,10 @@
 /*
  * Snake
  * 
- * Version 0.8
+ * Version 1.0.0
  * 
- * 5/1/13
+ * 5/18/13
  * 
- * I will push the shit out of you
  * Author: Rafael Materla
  */
 
@@ -14,24 +13,21 @@ package rafael.materla.logic;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public final class Snake implements KeyListener {
 
 	// ---INSTANCE-VARIABLES---------------------------------------------------/
-	private SnakeHead head;
-	private Directions headDirection;
-	private LinkedList<SnakeBody> body;
-	private LinkedList<Point> headPositions;
-	private String WTF = "DU BLÖDER HURENSOHN JETZT FUNK-FUCKING-KURWA-TIONIER";
+	private Head head;
+	private LinkedList<SnakePart> snake;
 
 	// ---CONSTRUCTORS---------------------------------------------------------/
 	public Snake(int x, int y) {
-		head = new SnakeHead(x, y);
-		headDirection = Directions.NONE;
-		body = new LinkedList<SnakeBody>();
-		headPositions = new LinkedList<Point>();
+		head = new Head(x, y);
+		snake = new LinkedList<SnakePart>();
+		snake.add(head);
+		 grow();
+		 grow();
 	}
 
 	public Snake() {
@@ -40,53 +36,59 @@ public final class Snake implements KeyListener {
 
 	// ---METHODS--------------------------------------------------------------/
 	void move() {
-		head.move(headDirection);
-		if (!head.isInsideBoard()) {
-			Board.setGameOver();
+		Point oldPartPosition = null;
+		for (SnakePart part : snake) {
+			System.out.println(part);
+			if (part.getID() == 0) {
+				part.move();
+				oldPartPosition = part.getOldPosition();
+			} else {
+				part.setPosition(oldPartPosition);
+				oldPartPosition = part.getOldPosition();
+			}
 		}
-		pushBody();
 	}
 
 	void grow() {
-		System.out
-				.println("GROW :D! Length " + (headPositions.size() + 1) + "");
-		body.add(new SnakeBody(headPositions.getLast()));
+		snake.add(new Body(snake.get(SnakePart.getCount() - 1).getOldPosition()));
 	}
 
-	ArrayList<Figure> getSnake() {
-		ArrayList<Figure> snake = new ArrayList<Figure>();
-		snake.add(head);
-		snake.addAll(body);
+	Head getHead() {
+		return head;
+	}
+
+	LinkedList<SnakePart> getSnake() {
 		return snake;
-	}
-
-	// TODO REPAIR THIS FUCKED UP METHOD (MAYBE IF(ONLY ONE HEAD) DO -1 )
-	private void pushBody() {
-		if (headPositions.size() > SnakeBody.getCount()) {
-			headPositions.removeLast();
-		}
-		headPositions.addFirst(head.getPosition());
-		for (SnakeBody snakeBody : body) {
-			snakeBody.setPosition(headPositions.get(snakeBody.getID()));
-		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			headDirection = Directions.NORTH;
+			if (head.getDirections() != Directions.SOUTH) {
+				head.setDirection(Directions.NORTH);
+			}
 			break;
 		case KeyEvent.VK_RIGHT:
-			headDirection = Directions.EAST;
+			if (head.getDirections() != Directions.WEST) {
+				head.setDirection(Directions.EAST);
+			}
 			break;
 		case KeyEvent.VK_DOWN:
-			headDirection = Directions.SOUTH;
+			if (head.getDirections() != Directions.NORTH) {
+				head.setDirection(Directions.SOUTH);
+			}
 			break;
 		case KeyEvent.VK_LEFT:
-			headDirection = Directions.WEST;
+			if (head.getDirections() != Directions.EAST) {
+				head.setDirection(Directions.WEST);
+			}
 			break;
 		}
+	}
+
+	boolean isInsideBoard() {
+		return head.isInsideBoard();
 	}
 
 	Point getPosition() {

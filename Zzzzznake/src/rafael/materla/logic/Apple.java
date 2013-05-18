@@ -1,9 +1,9 @@
 /*
  * Apple
  * 
- * Version 0.8
+ * Version 1.0.0
  * 
- * 5/1/13
+ * 5/18/13
  * 
  * Author: Rafael Materla
  */
@@ -15,11 +15,10 @@ import java.awt.Color;
 public final class Apple extends Figure {
 
 	Apple(int x, int y) {
-		super(x, y, Color.RED, "Apple");
+		super(x, y, Color.RED);
 	}
-//H컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴�...-.-
 	Apple() {
 		super((int) (Math.random() * Board.HORIZONTAL_CELLS), (int) (Math
-				.random() * Board.VERTICAL_CELLS), Color.RED, "Apple");
+				.random() * Board.VERTICAL_CELLS), Color.RED);
 	}
 }

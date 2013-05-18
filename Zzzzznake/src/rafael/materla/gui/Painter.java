@@ -1,9 +1,9 @@
 /*
  * Painter
  * 
- * Version 0.8
+ * Version 1.0.0
  * 
- * 5/1/13
+ * 5/18/13
  * 
  * Author: Rafael Materla
  */
@@ -27,14 +27,11 @@ public class Painter extends JPanel {
 
 	// ---INSTANCE-VARIABLES---------------------------------------------------/
 	private static final long serialVersionUID = 3597547278483158168L;
-	private final Board board;
 
 	// ---CONSTRUCTOR----------------------------------------------------------/
-	public Painter(Board boardObject) {
-		board = boardObject;
-
-		addKeyListener(board.getSnake());
-		setPreferredSize(board.getBoardSize());
+	public Painter() {
+		addKeyListener(Board.getSnake());
+		setPreferredSize(Board.getBoardSize());
 		setBackground(Color.BLACK);
 		setFocusable(true);
 		setRequestFocusEnabled(true);
@@ -53,13 +50,13 @@ public class Painter extends JPanel {
 		} else {
 			g.setColor(Color.RED);
 			g.drawString("GAME OVER",
-					(int) board.getBoardSize().getWidth() / 3, (int) board
+					(int) Board.getBoardSize().getWidth() / 3, (int) Board
 							.getBoardSize().getHeight() / 2);
 		}
 	}
 
 	private void paintTiles(Graphics g) {
-		for (Figure figure : board.getTiles()) {
+		for (Figure figure : Board.getTiles()) {
 			g.setColor(figure.getColor());
 			g.fillRect(figure.getX() * Board.CELL_LENGTH, figure.getY()
 					* Board.CELL_LENGTH, Board.CELL_LENGTH, Board.CELL_LENGTH);

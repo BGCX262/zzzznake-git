@@ -1,9 +1,9 @@
 /*
  * Directions
  * 
- * Version 0.7.5
+ * Version 1.0.0
  * 
- * 4/7/13
+ * 5/18/13
  * 
  * Author: Rafael Materla
  */
@@ -16,9 +16,8 @@ package rafael.materla.logic;
  * EAST = snake moves to the right
  * SOUTH = snake moves down
  * WEST = snake moves to the left
- * NONE = no direction (used at the beginning until an arrow key is pressed)
  */
 
 public enum Directions {
-	NORTH, EAST, SOUTH, WEST, NONE;
+	NORTH, EAST, SOUTH, WEST;
 }

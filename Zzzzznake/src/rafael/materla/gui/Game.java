@@ -1,9 +1,9 @@
 /*
  * Game
  * 
- * Version 0.8
+ * Version 1.0.0
  * 
- * 5/1/13
+ * 5/18/13
  * 
  * Author: Rafael Materla
  */
@@ -36,7 +36,7 @@ public class Game {
 	public Game(String name) {
 		board = new Board();
 		frame = new JFrame(name);
-		panel = new Painter(board);
+		panel = new Painter();
 		clock = new Timer(board, panel);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

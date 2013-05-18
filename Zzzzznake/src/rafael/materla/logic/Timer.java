@@ -1,9 +1,9 @@
 /*
  * Timer
  * 
- * Version 0.7.5
+ * Version 1.0.0
  * 
- * 4/8/13
+ * 5/18/13
  * 
  * Author: Rafael Materla
  */
@@ -15,6 +15,7 @@ import rafael.materla.gui.Painter;
 /*
  * The Timer class times the events that have to happen to make the game run
  * (update board, paint it to the screen, wait, repeat)
+ * Mate. Feed. Kill. Repeat. $tay ($ic)
  */
 public class Timer {
 
@@ -32,11 +33,14 @@ public class Timer {
 
 	// ---METHODS--------------------------------------------------------------/
 	public void start() {
-		while (!Board.isGameOver()) {
-			if (lastFrame + 100000000 <= System.nanoTime()) {
+		while (true) {
+			if (lastFrame + 100000000 <= System.nanoTime()
+					&& !Board.isGameOver()) {
 				boardReference.updateTiles();
 				painterReference.repaint();
 				lastFrame = System.nanoTime();
+			} else if (Board.isGameOver()) {
+				painterReference.repaint();
 			}
 		}
 	}

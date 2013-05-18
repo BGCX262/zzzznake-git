@@ -1,9 +1,9 @@
 /*
  * Figure
  * 
- * Version 0.8
+ * Version 1.0.0
  * 
- * 5/1/13
+ * 5/18/13
  * 
  * Author: Rafael Materla
  */
@@ -20,19 +20,22 @@ public abstract class Figure {
 	protected final Color figureColor;
 	protected String name;
 	// ---CONSTRUCTORS---------------------------------------------------------/
-	Figure(int x, int y, Color color, String tileName) {
+	Figure(int x, int y, Color color) {
 		position = new Point(x, y);
 		figureColor = color;
-		name = tileName;
 	}
 
 	Figure() {
-		this(0, 0, Color.WHITE, "NoName");
+		this(0, 0, Color.WHITE);
 	}
 
 	// ---METHODS--------------------------------------------------------------/
 	protected void setPosition(int x, int y) {
-		position = new Point(x, y);
+		position.setLocation(x, y);
+	}
+	
+	protected void setPosition(Point position){
+		position.setLocation(position);
 	}
 
 	protected Point getPosition() {
