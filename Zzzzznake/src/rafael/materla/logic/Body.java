@@ -25,10 +25,10 @@ final class Body extends SnakePart {
 	}
 
 	// ---METHODS--------------------------------------------------------------/
-	void move(Point position){
+	void move(Point position) {
 		setPosition(position);
 	}
-	
+
 	protected void setPosition(Point point) {
 		setOldPosition(position);
 		position.setLocation(point);

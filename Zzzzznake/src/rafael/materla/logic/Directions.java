@@ -16,8 +16,9 @@ package rafael.materla.logic;
  * EAST = snake moves to the right
  * SOUTH = snake moves down
  * WEST = snake moves to the left
+ * NONE = start position for slowhead (Elia... xD)
  */
 
 public enum Directions {
-	NORTH, EAST, SOUTH, WEST;
+	NORTH, EAST, SOUTH, WEST, NONE;
 }

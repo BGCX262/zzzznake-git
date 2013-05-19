@@ -26,8 +26,8 @@ public final class Snake implements KeyListener {
 		head = new Head(x, y);
 		snake = new LinkedList<SnakePart>();
 		snake.add(head);
-		 grow();
-		 grow();
+		grow();
+		grow();
 	}
 
 	public Snake() {
@@ -38,7 +38,6 @@ public final class Snake implements KeyListener {
 	void move() {
 		Point oldPartPosition = null;
 		for (SnakePart part : snake) {
-			System.out.println(part);
 			if (part.getID() == 0) {
 				part.move();
 				oldPartPosition = part.getOldPosition();

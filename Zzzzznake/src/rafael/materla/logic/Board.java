@@ -22,7 +22,7 @@ import java.util.List;
 public class Board {
 
 	// ---INSTANCE-VARIABLES---------------------------------------------------/
-	public static final int CELL_LENGTH = 15;
+	public static final int CELL_LENGTH = 20;
 	public static final int HORIZONTAL_CELLS = 35;
 	public static final int VERTICAL_CELLS = 25;
 

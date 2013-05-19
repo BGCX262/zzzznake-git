@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 
 import rafael.materla.logic.Board;
 import rafael.materla.logic.Figure;
+import rafael.materla.logic.SnakePart;
 
 /*
  * The Painter class gets the informations about the visual informations about 
@@ -36,8 +37,7 @@ public class Painter extends JPanel {
 		setFocusable(true);
 		setRequestFocusEnabled(true);
 		setDoubleBuffered(true);
-		setIgnoreRepaint(true);
-		setFont(new Font("GAME OVER", Font.BOLD, 30));
+		setFont(new Font("GAME OVER", Font.BOLD, 2 * Board.CELL_LENGTH));
 	}
 
 	// ---METHODS--------------------------------------------------------------/
@@ -47,19 +47,24 @@ public class Painter extends JPanel {
 		super.paintComponent(g);
 		if (!Board.isGameOver()) {
 			paintTiles(g);
+			g.setColor(Color.PINK);
+			g.drawString("SCORE: " + ((SnakePart.getCount() - 3) * 100), 0, 30);
 		} else {
 			g.setColor(Color.RED);
 			g.drawString("GAME OVER",
 					(int) Board.getBoardSize().getWidth() / 3, (int) Board
 							.getBoardSize().getHeight() / 2);
+			g.setColor(Color.PINK);
+			g.drawString("SCORE: " + ((SnakePart.getCount() - 3) * 100), 0, 30);
 		}
 	}
 
 	private void paintTiles(Graphics g) {
 		for (Figure figure : Board.getTiles()) {
 			g.setColor(figure.getColor());
-			g.fillRect(figure.getX() * Board.CELL_LENGTH, figure.getY()
-					* Board.CELL_LENGTH, Board.CELL_LENGTH, Board.CELL_LENGTH);
+			g.fillRect((figure.getX() * Board.CELL_LENGTH) + 1,
+					(figure.getY() * Board.CELL_LENGTH) + 1,
+					Board.CELL_LENGTH - 1, Board.CELL_LENGTH - 1);
 		}
 	}
 }

@@ -20,7 +20,7 @@ final class Head extends SnakePart {
 	// ---CONSTRUCTORS---------------------------------------------------------/
 	Head(int x, int y) {
 		super(x, y, Color.GREEN);
-		direction = Directions.NORTH;
+		direction = Directions.NONE;
 	}
 
 	public Head() {

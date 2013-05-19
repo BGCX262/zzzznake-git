@@ -17,6 +17,7 @@ public final class Apple extends Figure {
 	Apple(int x, int y) {
 		super(x, y, Color.RED);
 	}
+
 	Apple() {
 		super((int) (Math.random() * Board.HORIZONTAL_CELLS), (int) (Math
 				.random() * Board.VERTICAL_CELLS), Color.RED);
